@@ -32,7 +32,7 @@ class User(db.Model):
         secondary=favorite_characters,
         back_populates="favorited_by_user"
     )
-    favorite_locactions: Mapped[list["Location"]] = db.relationship(
+    favorite_locations: Mapped[list["Location"]] = db.relationship(
         "Location",
         secondary=favorite_locations,
         back_populates="favorited_by_user"
@@ -79,7 +79,7 @@ class Location(db.Model):
     favorited_by_user: Mapped[list["User"]] = db.relationship(
         "User",
         secondary=favorite_locations,
-        back_populates="favorite_locactions"
+        back_populates="favorite_locations"
     )
 
     def serialize(self):
@@ -89,6 +89,3 @@ class Location(db.Model):
             'town': self.town,
             'use': self.use
         }
-
-
-
